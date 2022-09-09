@@ -24,6 +24,11 @@ body{
 main{
     width: 100vw;
     height: 50vh;
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 footer{
@@ -42,7 +47,7 @@ a{
 }
 
 article{
-    font-size: 17px;
+    font-size: 16px;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     flex-direction: row;
@@ -57,6 +62,7 @@ article > section{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .button{

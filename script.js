@@ -13,7 +13,6 @@ let oldSortAlgo = sortAlgo;
 let unsortedArray = new Array(bars);
 
 window.onload = () => {
-    render().info();
     getId(randomizeId).addEventListener('click', () => {
         unsortedArray = array().randomize();
         render().bars();
@@ -32,6 +31,7 @@ window.onload = () => {
         sortAlgo = getId(sortSelectorId).value;
         render().info()
     });
+    render().info();
 }
 
 function sleep(ms) {
@@ -84,14 +84,14 @@ function sort(){
                     self.selection();
                     break;
                 case 'insertion':
-                    self.insertion()
+                    self.insertion();
                     break;
                 case 'heap':
-                    window.alert('To jeszcze nie dziala')
-                    //self.heap()
+                    self.heap();
                     break;
                 case 'quick':
-                    window.alert('To jeszcze nie dziala')
+                    self.quick();
+                    break;
                 default:
                     self.bubble();
                     break;
@@ -166,48 +166,167 @@ function sort(){
                 array[j+1] = current;
             }
         },
-        heap: (array = unsortedArray) => {
-            let parentIndex = (index) => Math.floor((index-1)/2);
-            let leftChildIndex = (index) => 2*index+1;
-            let rightChildIndex = (index) => 2*index+2;
-            let swap = (a, b) => {
-                let temp = array[a];
-                array[a] = array[b];
-                array[b] = temp;
+        heap: async (array = unsortedArray) => {
+            let bars = document.getElementsByClassName("bar");
+            const maxHeapify = (arr, n, i) => {
+                let largest = i;
+                let l = 2 * i + 1; //left child index
+                let r = 2 * i + 2; //right child index
+                
+                 if (l < n && arr[l] > arr[largest]) {
+                       largest = l;
+                 }
+
+                 if (r < n && arr[r] > arr[largest]) {
+                      largest = r;
+                 }
+
+                 if (largest != i) { 
+                        let temp = arr[i]; 
+                        arr[i] = arr[largest]; 
+                        arr[largest] = temp;
+                        maxHeapify(arr, n, largest); 
+                  } 
+              }
+
+                for (let i = parseInt(array.length / 2 - 1); i >= 0; i--) {
+                    bars[i].style.backgroundColor = 'red';
+                    await sleep(speed);
+                    render().bars();
+                    maxHeapify(array, array.length, i); 
+                }
+                for (let i = array.length - 1; i >= 0; i--) {
+                    let temp = array[0]; 
+                    array[0] = array[i]; 
+                    array[i] = temp;
+                    bars[i].style.backgroundColor = 'red';
+                    await sleep(speed);
+                    render().bars();
+                    maxHeapify(array, i, 0); 
+                }
+            render().bars();
+        },
+        quick: (array = unsortedArray) => {
+            console.log(array)
+            const self = {
+                partitionLow: (arr, low, high) => {
+                    let pivot = arr[low];
+                    let i = low;
+
+                    for(let j = low; j <= high; j++){
+                        if(arr[j] <= pivot){ 
+                            let temp = arr[i];
+                            arr[i] = arr[j];
+                            arr[j] = temp;
+                            i++;
+                        }
+                    }
+                
+                    let temp = arr[i-1];
+                    arr[i-1] = arr[low];
+                    arr[low] = temp;
+                    
+                    return i - 1;
+                },
+                quicksort: async (arr, low, high) => {
+                    let bars = document.getElementsByClassName("bar");
+                    if (low >= high) {
+                        return;
+                    }
+
+                    bars[low].style.backgroundColor = 'red';
+                    bars[high].style.backgroundColor = 'lightgreen';
+                    await sleep(speed);
+                    render().bars();
+                    const pivot = self.partitionLow(arr, low, high);
+
+                    self.quicksort(arr, low, pivot - 1);
+
+                    self.quicksort(arr, pivot + 1, high);
+                },
+            }
+            self.quicksort(unsortedArray, 0, unsortedArray.length - 1);
+            render().bars()
+            return self;
+            let low = 0;
+            let high = unsortedArray - 1;
+            if (low >= high) {
+                return;
             }
 
-            let insert = (item) => {
-                array.push(item);
-                let index = array.length - 1;
-                let parent = parentIndex(index);
-                while(array[parent] && array[parent] < array[index]){
-                    swap(parent, index);
-                    index = parentIndex(index);
-                    parent = parentIndex(index);
+            //partitionLow
+            let pivott = array[low];
+            let i = low;
+
+            for(let j = low; j <= high; j++){
+                if(array[j] <= pivott){ 
+                    let temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    i++;
+                }
+            }
+                
+            let temp = array[i-1];
+            array[i-1] = array[low];
+            array[low] = temp;
+                    
+            let pivot = i-1;
+            //partitionLow End
+
+            //quick sort 1
+            low = low;
+            high = pivot - 1;
+            if (low >= high) {
+                return;
+            }
+
+            //partitionLow
+            pivott = array[low];
+            i = low;
+
+            for(let j = low; j <= high; j++){
+                if(array[j] <= pivott){ 
+                    let temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    i++;
                 }
             }
 
-            let del = () => {
-                let item = array.shift();
-                array.unshift(array.pop());
-                let index = 0;
-                let leftChild = leftChildIndex(index);
-                let rightChild = rightChildIndex(index);
-                while(array[leftChild] && array[leftChild] > array[index] || array[rightChild] > array[index]){
-                    let max = leftChild;
-                    if(array[rightChild] && array[rightChild] > array[max]) max = rightChild;
-                    swap(max, index);
-                    index = max;
-                    leftChild = leftChildIndex(max);
-                    rightChild = rightChildIndex(max);
-                }
-                return item;
+            temp = array[i-1]
+            array[i-1] = array[low];
+            array[low] = temp;
+
+            pivot = i - 1
+            //partitionLow End
+
+            //quick sort 2
+            low = pivot + 1;
+            high = high;
+            if (low >= high) {
+                return;
             }
 
-            let sorted = [];
-            for(let i = 0; i < array.length; i++)   insert(array[i]);
-            for(let i = 0; i < array.length; i++)   sorted.push(del());
-            render().bars(sorted);
+            //partitionLow
+            pivott = array[low];
+            i = low;
+
+            for(let j = low; j <= high; j++){
+                if(array[j] <= pivott){ 
+                    let temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    i++;
+                }
+            }
+
+            temp = array[i-1]
+            array[i-1] = array[low];
+            array[low] = temp;
+
+            pivot = i - 1
+            //partitionLow End
         }
     }
     return self;
