@@ -11,25 +11,129 @@
     <nav id="mainNav">
         <button id="randomize" class="button">Randomize</button>
         <select name="speed" id="speed" class="button">
+            <option value="1">very fast</option>
             <option value="10">fast</option>
             <option value="100">normal</option>
             <option value="500">slow</option>
+            <option value="1000">very slow</option>
         </select>
         <select name="sortSelect" id="sortSelect" class="button">
             <option value="bubble">bubble</option>
             <option value="selection">selection</option>
             <option value="insertion">insertion</option>
+            <option value="heap">heap</option>
+            <option value="quick">quick</option>
         </select>
         <select name="size" id="size" class="button">
+            <option value="5">very small</option>
             <option value="10">small</option>
             <option value="50">normal</option>
             <option value="100">large</option>
+            <option value="250">very large</option>
         </select>
         <button id="sort" class="button">Sort</button>
     </nav>
     <main>
         <div id="sortVisual"></div>
     </main>
+    <!--Bubble-->
+    <article class="info">
+        <section class="sudoCode">
+            <h1>Sudo Code</h1><br>
+            <pre>
+for(i = 0; i < array.length; i++)
+  for(j = 0; j < array.length - i - 1; j++)
+    if(array[j] > array[j+1])
+      var temp = array[j]
+      array[j] = array[j+1]
+      array[j+1] = temp
+            </pre>
+        </section>
+        <section class="about">
+            Bubble sort works on the repeatedly swapping of adjacent elements until they are not in the intended order. It is called bubble sort because the movement of array elements is just like the movement of air bubbles in the water. Bubbles in water rise up to the surface; similarly, the array elements in bubble sort move to the end in each iteration.Although it is simple to use, it is primarily used as an educational tool because the performance of bubble sort is poor in the real world. It is not suitable for large data sets. The average and worst-case complexity of Bubble sort is O(n2), where n is a number of items.
+        </section>
+        <section class="video">
+            <iframe width="500" height="281" src="https://www.youtube.com/embed/xli_FI7CuzA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+    </article>
+    <!--Select-->
+    <article class="info">
+        <section class="sudoCode">
+            <h1>Sudo Code</h1><br>
+            <pre>
+for(i = 0; i < array.length; i++)
+  var min = i;
+  for(j = i+1; j < array.length; j++)
+    if(array[j] < array[min])
+      min = j;
+  if(min != i)
+    let temp = array[i];
+    array[i] = array[min];
+    array[min] = temp;
+            </pre>
+        </section>
+        <section class="about">
+            In selection sort, the smallest value among the unsorted elements of the array is selected in every pass and inserted to its appropriate position into the array. It is also the simplest algorithm. It is an in-place comparison sorting algorithm. In this algorithm, the array is divided into two parts, first is sorted part, and another one is the unsorted part. Initially, the sorted part of the array is empty, and unsorted part is the given array. Sorted part is placed at the left, while the unsorted part is placed at the right.In selection sort, the first smallest element is selected from the unsorted array and placed at the first position. After that second smallest element is selected and placed in the second position. The process continues until the array is entirely sorted.The average and worst-case complexity of selection sort is O(n2), where n is the number of items. Due to this, it is not suitable for large data sets.
+        </section>
+        <section class="video">
+            <iframe width="500" height="281" src="https://www.youtube.com/embed/g-PGLbMth_g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+    </article>
+    <!--Insert-->
+    <article class="info">
+        <section class="sudoCode">
+            <h1>Sudo Code</h1><br>
+            <pre>
+for(i = 1; i < array.length; i++)
+  var current = array[i];
+  var j = i-1;
+  while((j > -1) && (current < array[j]))
+    array[j+1] = array[j];
+    j--;
+  array[j+1] = current;
+            </pre>
+        </section>
+        <section class="about">
+            Insertion sort works similar to the sorting of playing cards in hands. It is assumed that the first card is already sorted in the card game, and then we select an unsorted card. If the selected unsorted card is greater than the first card, it will be placed at the right side; otherwise, it will be placed at the left side. Similarly, all unsorted cards are taken and put in their exact place.The same approach is applied in insertion sort. The idea behind the insertion sort is that first take one element, iterate it through the sorted array. Although it is simple to use, it is not appropriate for large data sets as the time complexity of insertion sort in the average case and worst case is O(n2), where n is the number of items. Insertion sort is less efficient than the other sorting algorithms like heap sort, quick sort, merge sort, etc.
+        </section>
+        <section class="video">
+            <iframe width="500" height="281" src="https://www.youtube.com/embed/JU767SDMDvA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+    </article>
+    <!--Heap-->
+    <article class="info">
+        <section class="sudoCode">
+            <h1>sudoCode</h1><br>
+            <pre>
+&#128405;&#128405;&#128405;&#128405;&#128405;&#128405;&#128405;&#128405;
+            </pre>
+        </section>
+        <section class="about">
+            Heapsort is a popular and efficient sorting algorithm. The concept of heap sort is to eliminate the elements one by one from the heap part of the list, and then insert them into the sorted part of the list. <br><br>
+            A heap is a complete binary tree, and the binary tree is a tree in which the node can have the utmost two children. A complete binary tree is a binary tree in which all the levels except the last level, i.e., leaf node, should be completely filled, and all the nodes should be left-justified.
+        </section>
+        <section class="video">
+            <iframe width="500" height="281" src="https://www.youtube.com/embed/2DmK_H7IdTo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+    </article>
+    <!--Quick-->
+    <article class="info">
+        <section class="sudoCode">
+            <h1>Sudo Code</h1><br>
+            <pre>
+&#128405;&#128405;&#128405;&#128405;&#128405;&#128405;&#128405;&#128405;
+            </pre>
+        </section>
+        <section class="about">
+            This algorithm follows the divide and conquer approach. Divide and conquer is a technique of breaking down the algorithms into subproblems, then solving the subproblems, and combining the results back together to solve the original problem. <br><br>
+            Divide: In Divide, first pick a pivot element. After that, partition or rearrange the array into two sub-arrays such that each element in the left sub-array is less than or equal to the pivot element and each element in the right sub-array is larger than the pivot element. <br><br>
+            Conquer: Recursively, sort two subarrays with Quicksort. <br><br>
+            Combine: Combine the already sorted array. <br><br>
+        </section>
+        <section class="video">
+            <iframe width="500" height="281" src="https://www.youtube.com/embed/Hoixgm4-P4M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+    </article>
     <footer><a href="https://github.com/julian428/Sorting-Visualizer" target="_blank">GitHub</a></footer>
     <script src="script.js"></script>
 </body>
