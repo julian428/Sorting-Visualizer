@@ -104,7 +104,7 @@ for(i = 1; i < array.length; i++)
     <article class="info">
         <section class="sudoCode" style="width: 50%;">
             <h1>sudoCode</h1><br>
-            <div style="display: flex; flex-direction: row;">
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
                 <pre>
 heap(array, length, i)
   var largest = i
@@ -130,7 +130,7 @@ sort(array, length)
                 </pre>
             </div>
         </section>
-        <section class="about" style="width: 26.67%;">
+        <section class="about" id="heapAbout">
             Heapsort is a popular and efficient sorting algorithm. The concept of heap sort is to eliminate the elements one by one from the heap part of the list, and then insert them into the sorted part of the list. <br><br>
             A heap is a complete binary tree, and the binary tree is a tree in which the node can have the utmost two children. A complete binary tree is a binary tree in which all the levels except the last level, i.e., leaf node, should be completely filled, and all the nodes should be left-justified.
         </section>
@@ -142,7 +142,7 @@ sort(array, length)
     <article class="info">
         <section class="sudoCode" style="width: 50%;">
             <h1>Sudo Code</h1><br>
-            <div style="display: flex; flex-direction: row;">
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
                 <pre>
 partition(array, low, high)
   var pivot = array[high]
@@ -166,7 +166,7 @@ sort(array, low, high)
                 </pre>
             </div>
         </section>
-        <section class="about" style="width: 26.67%;">
+        <section class="about" id="quickAbout">
             This algorithm follows the divide and conquer approach. Divide and conquer is a technique of breaking down the algorithms into subproblems, then solving the subproblems, and combining the results back together to solve the original problem. <br><br>
             Divide: In Divide, first pick a pivot element. After that, partition or rearrange the array into two sub-arrays such that each element in the left sub-array is less than or equal to the pivot element and each element in the right sub-array is larger than the pivot element. <br><br>
             Conquer: Recursively, sort two subarrays with Quicksort. <br><br>
