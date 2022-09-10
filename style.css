@@ -110,18 +110,29 @@ article > section{
 }
 
 @media screen and (max-width: 1200px) {
+
     article{
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
     article>section{
         width: 100%;
         margin-bottom: 100px;
+        font-size: 30px;
+    }
+    iframe{
+        width: 90vw;
+        height: 50.58vw;
+        margin-bottom: 2vh;
     }
 
     main{height: 60vh;}
     footer{display: none;}
     
     .sudoCode>div>pre{width: 100%;}
-    .about{width: 100% !important;}
+    .about{
+        width: 100% !important;
+        text-align: center;
+    }
 }
